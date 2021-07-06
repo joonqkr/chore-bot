@@ -49,4 +49,24 @@ public class Chore {
     public boolean getStatus() {
         return _status;
     }
+
+    /** Updates the name of chore. */
+    public void updateName(String name) {
+        _name = name;
+    }
+
+    /** Updates number of people. */
+    public void updateNumPeople(int numPeople) {
+        _numPeople = numPeople;
+    }
+
+    /** Updates the duration of the chore. */
+    public void updateDuration(int duration) {
+        _duration = duration;
+    }
+
+    /** Switches the status. */
+    public void updateStatus() {
+        _status = !_status;
+    }
 }
