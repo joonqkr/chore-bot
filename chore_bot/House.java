@@ -64,7 +64,7 @@ public class House {
     }
 
     /** Removes a chore from the house. */
-    public void removeChore(People chore) {
+    public void removeChore(Chore chore) {
         _chores.remove(chore);
     }
 }
