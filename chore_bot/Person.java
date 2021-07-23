@@ -29,12 +29,12 @@ public class Person {
     }
 
     /** Returns the list of the person's chores. */
-    public ArrayList<People> getChores() {
+    public ArrayList<Chore> getChores() {
         return _chores;
     }
 
     /** Returns the list of houses the person is in. */
-    public ArrayList<Chore> getHouses() {
+    public ArrayList<House> getHouses() {
         return _houses;
     }
 
@@ -45,27 +45,27 @@ public class Person {
 
     /** Updates the name of the person. */
     public void updateName(String name) {
-        _name = name;
+        this._name = name;
     }
 
     /** Adds a chore. */
     public void addChore(Chore chore) {
-        _chores.add(chore);
+        this._chores.add(chore);
     }
 
     /** Removes a chore. */
     public void removeChore(Chore chore) {
-        _chores.remove(chore);
+        this._chores.remove(chore);
     }
 
     /** Adds a house. */
     public void addHouse(House house) {
-        _houses.add(house);
+        this._houses.add(house);
     }
 
     /** Removes a person from the house. */
     public void removeHouse(House house) {
-        _houses.remove(house);
+        this._houses.remove(house);
     }
 
 

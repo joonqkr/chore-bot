@@ -11,7 +11,7 @@ public class House {
     private String _name;
 
     /** The list of people in the house. */
-    private ArrayList<People> _members;
+    private ArrayList<Person> _members;
 
     /** The list of chores for the house. */
     private ArrayList<Chore> _chores;
@@ -19,7 +19,7 @@ public class House {
     /** The constructor for the House class, which takes in NAME. */
     public House(String name) {
         _name = name;
-        _members = new ArrayList<People>();
+        _members = new ArrayList<Person>();
         _chores = new ArrayList<Chore>();
     }
 
@@ -29,7 +29,7 @@ public class House {
     }
 
     /** Returns the list of members in the house. */
-    public ArrayList<People> getMembers() {
+    public ArrayList<Person> getMembers() {
         return _members;
     }
 
@@ -45,26 +45,26 @@ public class House {
 
     /** Updates the name of the house. */
     public void updateName(String name) {
-        _name = name;
+        this._name = name;
     }
 
     /** Adds a person to the house. */
-    public void addMember(People member) {
-        _members.add(member);
+    public void addMember(Person member) {
+        this._members.add(member);
     }
 
     /** Removes a person from the house. */
-    public void removeMember(People member) {
-        _members.remove(member);
+    public void removeMember(Person member) {
+        this._members.remove(member);
     }
 
     /** Adds a chore to the house. */
     public void addChore(Chore chore) {
-        _chores.add(chore);
+        this._chores.add(chore);
     }
 
     /** Removes a chore from the house. */
     public void removeChore(Chore chore) {
-        _chores.remove(chore);
+        this._chores.remove(chore);
     }
 }

@@ -23,11 +23,20 @@ public class Chore {
 
     /** The constructor for the Chore class, which takes in the NAME, 
      *  the NUMPEOPLE, and DURATION. */
-    public Chore(String name, int numPeople, int duration) {
+    public Chore(String name, int frequency, int numPeople, int duration) {
         _name = name;
+        setFrequency(frequency);
         _numPeople = numPeople;
         _duration = duration;
-        _status = True;
+        _status = true;
+    }
+
+    public int getFrequency() {
+        return _frequency;
+    }
+
+    public void setFrequency(int _frequency) {
+        this._frequency = _frequency;
     }
 
     /** Returns the name of the chore. */
@@ -52,21 +61,21 @@ public class Chore {
 
     /** Updates the name of chore. */
     public void updateName(String name) {
-        _name = name;
+        this._name = name;
     }
 
     /** Updates number of people. */
     public void updateNumPeople(int numPeople) {
-        _numPeople = numPeople;
+        this._numPeople = numPeople;
     }
 
     /** Updates the duration of the chore. */
     public void updateDuration(int duration) {
-        _duration = duration;
+        this._duration = duration;
     }
 
     /** Switches the status. */
     public void updateStatus() {
-        _status = !_status;
+        this._status = !_status;
     }
 }
