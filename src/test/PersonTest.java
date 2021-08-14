@@ -29,11 +29,6 @@ public class PersonTest {
         joon.removeChore(washDishes);
         assertEquals(0, joon.numChores());
 
-        House apt = new House("channing");
-        joon.addHouse(apt);
-        assertEquals(1, joon.getHouses().size());
-        joon.removeHouse(apt);
-        assertEquals(0, joon.getHouses().size());
 
     }
 

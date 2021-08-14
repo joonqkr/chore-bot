@@ -13,14 +13,10 @@ public class Person {
     /** The list of the person's chores. */
     private ArrayList<Chore> _chores;
 
-    /** The list of houses the person is in. */
-    private ArrayList<House> _houses;
-
     /** The constructor for the Person class, which takes in NAME. */
     public Person(String name) {
         _name = name;
         _chores = new ArrayList<Chore>();
-        _houses =  new ArrayList<House>();
     }
 
     /** Returns the name of the person. */
@@ -31,11 +27,6 @@ public class Person {
     /** Returns the list of the person's chores. */
     public ArrayList<Chore> getChores() {
         return _chores;
-    }
-
-    /** Returns the list of houses the person is in. */
-    public ArrayList<House> getHouses() {
-        return _houses;
     }
 
     /** Returns the number of chores the person has. */
@@ -57,16 +48,5 @@ public class Person {
     public void removeChore(Chore chore) {
         this._chores.remove(chore);
     }
-
-    /** Adds a house. */
-    public void addHouse(House house) {
-        this._houses.add(house);
-    }
-
-    /** Removes a person from the house. */
-    public void removeHouse(House house) {
-        this._houses.remove(house);
-    }
-
 
 }
