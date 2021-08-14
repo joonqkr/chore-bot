@@ -9,7 +9,6 @@ import static org.junit.Assert.*;
  */
 public class ChoreTest {
 
-    /** A dummy test to avoid complaint. */
     @Test
     public void testChoreAttributes() {
         Chore washDishes = new Chore("wash dishes", 52, 3, 365);
