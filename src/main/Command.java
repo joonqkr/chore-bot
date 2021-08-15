@@ -24,8 +24,8 @@ public class Command {
         ArrayList<Chore> choreList = new ArrayList<Chore>();
         ArrayList<Person> personList = new ArrayList<Person>();
 
-        writeObject(chores, choreList);
-        writeObject(persons, personList);
+        writeObjectToFile(chores, choreList);
+        writeObjectToFile(persons, personList);
     }
 
 }

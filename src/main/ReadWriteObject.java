@@ -16,7 +16,7 @@ import java.nio.file.Files;
 class ReadWriteObject {
 
     /** Return an object of type T read from FILE, casting it to C. */
-    static <T extends Serializable> T readObject(File file, Class<T> c) throws IOException, ClassNotFoundException {
+    static <T extends Serializable> T readObjectFromFile(File file, Class<T> c) throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
         T obj = c.cast(ois.readObject());
         ois.close();
@@ -24,7 +24,7 @@ class ReadWriteObject {
     }
 
     /** Write OBJ to FILE. */
-    static void writeObject(File file, Serializable obj) throws IOException {
+    static void writeObjectToFile(File file, Serializable obj) throws IOException {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         ObjectOutputStream objStream = new ObjectOutputStream(byteStream);
         objStream.writeObject(obj);
