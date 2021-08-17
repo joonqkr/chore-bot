@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -8,6 +9,11 @@ import static main.ReadWriteObject.*;
 
 public class Command {
 
+    /** 
+     * Creates a new chore tracking system in the current directory. Creates a directory that contains two files -
+     * a file for the chores and a file for the persons. An initial empty array of chores and array of persons
+     * is created, serialized, and written to the respective files. 
+     */
     public void house() throws IOException {
         File cwd = new File(System.getProperty("user.dir"));
         File cb = new File(cwd, ".chore_bot");
@@ -28,4 +34,45 @@ public class Command {
         writeObjectToFile(persons, personList);
     }
 
+    /** 
+     * Adds a chore to the system. 
+     * @param name the name of the chore
+     * @param frequency the frequency of the chore
+     */
+    public void addChore(String name, int frequency) {
+
+    }
+
+    /**
+     * Adds a person to the system.
+     * @param name the name of the person to be added
+     */
+    public void addPerson(String name) {
+
+    }
+
+    /** 
+     * Removes a chore from the system. 
+     * @param chore the chore to be removed
+     */
+    public void removeChore(Chore chore) {
+
+    }
+
+    /** 
+     * Removes a person from the system. 
+     * @param person the person to be removed
+     */
+    public void removePerson(Person person) {
+
+    }
+
+    /**
+     * Updates to the system that the person completed their chore.
+     * @param person the person who completed the chore
+     * @param chore the chore that was completed
+     */
+    public void checkIn(Person person, Chore chore) {
+
+    }
 }
