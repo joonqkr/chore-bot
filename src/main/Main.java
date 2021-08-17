@@ -1,9 +1,5 @@
 package main;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 /** Driver class for Chore Bot.
  *  @author Joon Park
  */
@@ -16,8 +12,4 @@ import org.junit.Test;
         System.out.println("Hello, World!");
      }
 
-    @Test
-    public void choreTest() {
-        assertEquals(1, 1);
-    }
  }
