@@ -39,8 +39,17 @@ public class Command {
      * @param name the name of the chore
      * @param frequency the frequency of the chore
      */
-    public void addChore(String name, int frequency) {
+    public void addChore(String name, int frequency) throws IOException, ClassNotFoundException {
+        File cwd = new File(System.getProperty("user.dir"));
+        File cb = new File(cwd, ".chore_bot");
+        File chores = new File(cb, "chores");
 
+        ArrayList<Chore> choreList = readObjectFromFile(chores, ArrayList.class);
+
+        Chore chore = new Chore(name, frequency);
+        choreList.add(chore);
+        
+        writeObjectToFile(chores, choreList);
     }
 
     /**
