@@ -24,19 +24,14 @@ public class Person {
         return _name;
     }
 
-    /** Returns the list of the person's chores. */
-    public ArrayList<Chore> getChores() {
-        return _chores;
-    }
-
-    /** Returns the number of chores the person has. */
-    public int numChores() {
-        return _chores.size();
-    }
-
     /** Updates the name of the person. */
     public void updateName(String name) {
         this._name = name;
+    }
+
+    /** Returns the list of the person's chores. */
+    public ArrayList<Chore> getChores() {
+        return _chores;
     }
 
     /** Adds a chore. */

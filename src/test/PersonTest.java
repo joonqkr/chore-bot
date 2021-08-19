@@ -14,20 +14,19 @@ public class PersonTest {
         Person joon = new Person("Joon Park");
         assertEquals("Joon Park", joon.getName());
         assertEquals(0, joon.getChores().size());
-        assertEquals(0, joon.getHouses().size());
 
         joon.updateName("Joonseo Park");
         assertEquals("Joonseo Park", joon.getName());
 
-        Chore takeTrash = new Chore("take out trash", 26, 1, 180);
-        Chore washDishes = new Chore("wash dishes", 52, 3, 365);
+        Chore takeTrash = new Chore("take out trash", 26);
+        Chore washDishes = new Chore("wash dishes", 52);
         joon.addChore(takeTrash);
         joon.addChore(washDishes);
-        assertEquals(2, joon.numChores());
+        assertEquals(2, joon.getChores().size());
         joon.removeChore(takeTrash);
-        assertEquals(1, joon.numChores());
+        assertEquals(1, joon.getChores().size());
         joon.removeChore(washDishes);
-        assertEquals(0, joon.numChores());
+        assertEquals(0, joon.getChores().size());
 
 
     }
