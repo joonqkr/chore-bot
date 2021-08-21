@@ -14,8 +14,13 @@ public class Command {
      * a file for the chores and a file for the persons. An initial empty array of chores and array of persons
      * is created, serialized, and written to the respective files. 
      */
-    public void house() throws IOException {
-        File cwd = new File(System.getProperty("user.dir"));
+    public void house(File dir) throws IOException {
+        File cwd;
+        if (dir == null) {
+            cwd = new File(System.getProperty("user.dir"));
+        } else {
+            cwd = dir;
+        }
         File cb = new File(cwd, ".chore_bot");
         if (cb.exists()) {
             System.out.println("A chore system already exists here.");
@@ -48,7 +53,7 @@ public class Command {
 
         Chore chore = new Chore(name, frequency);
         choreList.add(chore);
-        
+
         writeObjectToFile(chores, choreList);
     }
 
