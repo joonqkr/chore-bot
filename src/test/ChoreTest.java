@@ -2,6 +2,7 @@ package test;
 
 import main.Chore;
 import main.Person;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 

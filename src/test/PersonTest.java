@@ -1,6 +1,7 @@
 package test;
 
 import main.*;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -27,7 +28,6 @@ public class PersonTest {
         assertEquals(1, joon.getChores().size());
         joon.removeChore(washDishes);
         assertEquals(0, joon.getChores().size());
-
 
     }
 
