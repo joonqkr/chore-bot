@@ -1,11 +1,10 @@
 package main;
 
-import java.util.ArrayList;
+import static main.ReadWriteObject.*;
 
+import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
-
-import static main.ReadWriteObject.*;
 
 public class Command {
 
@@ -44,8 +43,13 @@ public class Command {
      * @param name the name of the chore
      * @param frequency the frequency of the chore
      */
-    public void addChore(String name, int frequency) throws IOException, ClassNotFoundException {
-        File cwd = new File(System.getProperty("user.dir"));
+    public void addChore(File dir, String name, int frequency) throws IOException, ClassNotFoundException {
+        File cwd;
+        if (dir == null) {
+            cwd = new File(System.getProperty("user.dir"));
+        } else {
+            cwd = dir;
+        }
         File cb = new File(cwd, ".chore_bot");
         File chores = new File(cb, "chores");
 
@@ -61,32 +65,67 @@ public class Command {
      * Adds a person to the system.
      * @param name the name of the person to be added
      */
-    public void addPerson(String name) {
+    public void addPerson(File dir, String name) {
 
     }
 
     /** 
      * Removes a chore from the system. 
-     * @param chore the chore to be removed
+     * @param name the name of the chore to be removed
      */
-    public void removeChore(Chore chore) {
+    public void removeChore(File dir, String name) {
 
     }
 
     /** 
      * Removes a person from the system. 
-     * @param person the person to be removed
+     * @param name the name of the person to be removed
      */
-    public void removePerson(Person person) {
+    public void removePerson(File dir, String name) {
+
+    }
+
+    /**
+     * Assigns a person to a chore.
+     * @param person the name of the person to be assigned to the chore
+     * @param chore the name of the chore that the person will be assigned to
+     */
+    public void assign(String person, String chore) {
+
+    }
+
+    /**
+     * Prints the order in which people are assigned to do a chore.
+     * @param chore the name of the chore the chore to see the order assignment of
+     */
+    public void viewAssignmentOrder(String chore) {
+
+    }
+
+    /**
+     * Changes the order of the assignment by moving the person to a specific place.
+     * @param chore the name of the chore to change the assignment order of
+     * @param person the name of the person to move in assignment
+     * @param place the location to move the person to
+     */
+    public void moveAssignment(String chore, String person, int place) {
+
+    }
+
+    /**
+     * Prints all the chores of a person.
+     * @param person the name of the person to see the chores of
+     */
+    public void viewChores(String person) {
 
     }
 
     /**
      * Updates to the system that the person completed their chore.
-     * @param person the person who completed the chore
-     * @param chore the chore that was completed
+     * @param person the name of the person who completed the chore
+     * @param chore the name of the chore that was completed
      */
-    public void checkIn(Person person, Chore chore) {
+    public void checkIn(String person, String chore) {
 
     }
 }
