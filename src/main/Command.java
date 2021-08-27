@@ -65,8 +65,22 @@ public class Command {
      * Adds a person to the system.
      * @param name the name of the person to be added
      */
-    public void addPerson(File dir, String name) {
+    public void addPerson(File dir, String name) throws IOException, ClassNotFoundException {
+        File cwd;
+        if (dir == null) {
+            cwd = new File(System.getProperty("user.dir"));
+        } else {
+            cwd = dir;
+        }
+        File cb = new File(cwd, ".chore_bot");
+        File persons = new File(cb, "chores");
 
+        ArrayList<Person> personList = readObjectFromFile(persons, ArrayList.class);
+
+        Person person = new Person(name);
+        personList.add(person);
+
+        writeObjectToFile(persons, personList);
     }
 
     /** 
