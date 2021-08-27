@@ -1,11 +1,12 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /** A Person class
  *  @author Joon Park
  */
-public class Person {
+public class Person implements Serializable {
 
     /** The name of the person. */
     private String _name;

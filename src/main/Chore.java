@@ -1,11 +1,12 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /** A Chore class
  *  @author Joon Park
  */
-public class Chore {
+public class Chore implements Serializable {
 
     /** The name of the chore. */
     private String _name;
