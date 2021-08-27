@@ -161,4 +161,67 @@ public class CommandTest {
             }
         }
     }
+
+    @Test
+    public void checkInTest() throws IOException, ClassNotFoundException {
+        File dir = tempFolder.newFolder("folder");
+
+        Command com = new Command();
+        com.house(dir);
+        File cb = new File(dir, ".chore_bot");
+
+        File chores = new File(cb, "chores");
+        com.addChore(dir, "take out trash", 26);
+        com.addChore(dir, "wash the dishes", 365);
+        com.addChore(dir, "water plants", 52);
+
+        com.addPerson(dir, "Joon");
+        com.addPerson(dir, "Cindy");
+        com.addPerson(dir, "Tiffany");
+
+        com.assign(cb, "Joon", "take out trash");
+        com.assign(cb, "Cindy", "take out trash");
+        com.assign(cb, "Cindy", "wash the dishes");
+        com.assign(cb, "Tiffany", "wash the dishes");
+        com.assign(cb, "Joon", "wash the dishes");
+        com.assign(cb, "Cindy", "water plants");
+
+        ArrayList<Chore> choreList = readObjectFromFile(chores, ArrayList.class);
+        for (Chore chore : choreList) {
+            if (chore.getName().equals("take out trash")) {
+                assertEquals("Joon", chore.getCurrent().getName());
+            } else if (chore.getName().equals("wash the dishes")) {
+                assertEquals("Cindy", chore.getCurrent().getName());
+            } else {
+                assertEquals("Cindy", chore.getCurrent().getName());
+            }
+        }
+
+        com.checkIn(cb, "Joon", "take out trash");
+        com.checkIn(cb, "Tiffany", "wash the dishes");
+        com.checkIn(cb, "Cindy", "water plants");
+        choreList = readObjectFromFile(chores, ArrayList.class);
+        for (Chore chore : choreList) {
+            if (chore.getName().equals("take out trash")) {
+                assertEquals("Cindy", chore.getCurrent().getName());
+            } else if (chore.getName().equals("wash the dishes")) {
+                assertEquals("Cindy", chore.getCurrent().getName());
+            } else {
+                assertEquals("Cindy", chore.getCurrent().getName());
+            }
+        }
+
+        com.checkIn(cb, "Cindy", "wash the dishes");
+        choreList = readObjectFromFile(chores, ArrayList.class);
+        for (Chore chore : choreList) {
+            if (chore.getName().equals("wash the dishes")) {
+                assertEquals("Joon", chore.getCurrent().getName());
+            }
+        }
+    }
+
+    @Test
+    public void moveAssignmentTest() {
+
+    }
 }
