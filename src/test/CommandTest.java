@@ -105,8 +105,8 @@ public class CommandTest {
         com.addPerson(dir, "Cindy");
         com.addPerson(dir, "Tiffany");
 
-        com.assign(cb, "Joon", "take out trash");
-        com.assign(cb, "Cindy", "take out trash");
+        com.assign(dir, "Joon", "take out trash");
+        com.assign(dir, "Cindy", "take out trash");
         ArrayList<Chore> choreList = readObjectFromFile(chores, ArrayList.class);
         for (Chore chore : choreList) {
             if (chore.getName().equals("take out trash")) {
@@ -122,9 +122,9 @@ public class CommandTest {
             }
         }
 
-        com.assign(cb, "Cindy", "wash the dishes");
-        com.assign(cb, "Joon", "wash the dishes");
-        com.assign(cb, "Tiffany", "wash the dishes");
+        com.assign(dir, "Cindy", "wash the dishes");
+        com.assign(dir, "Joon", "wash the dishes");
+        com.assign(dir, "Tiffany", "wash the dishes");
         choreList = readObjectFromFile(chores, ArrayList.class);
         for (Chore chore : choreList) {
             if (chore.getName().equals("wash the dishes")) {
@@ -145,7 +145,7 @@ public class CommandTest {
             }
         }
 
-        com.assign(cb, "Cindy", "water plants");
+        com.assign(dir, "Cindy", "water plants");
         choreList = readObjectFromFile(chores, ArrayList.class);
         for (Chore chore : choreList) {
             if (chore.getName().equals("water plants")) {
@@ -179,12 +179,12 @@ public class CommandTest {
         com.addPerson(dir, "Cindy");
         com.addPerson(dir, "Tiffany");
 
-        com.assign(cb, "Joon", "take out trash");
-        com.assign(cb, "Cindy", "take out trash");
-        com.assign(cb, "Cindy", "wash the dishes");
-        com.assign(cb, "Tiffany", "wash the dishes");
-        com.assign(cb, "Joon", "wash the dishes");
-        com.assign(cb, "Cindy", "water plants");
+        com.assign(dir, "Joon", "take out trash");
+        com.assign(dir, "Cindy", "take out trash");
+        com.assign(dir, "Cindy", "wash the dishes");
+        com.assign(dir, "Tiffany", "wash the dishes");
+        com.assign(dir, "Joon", "wash the dishes");
+        com.assign(dir, "Cindy", "water plants");
 
         ArrayList<Chore> choreList = readObjectFromFile(chores, ArrayList.class);
         for (Chore chore : choreList) {
@@ -197,9 +197,9 @@ public class CommandTest {
             }
         }
 
-        com.checkIn(cb, "Joon", "take out trash");
-        com.checkIn(cb, "Tiffany", "wash the dishes");
-        com.checkIn(cb, "Cindy", "water plants");
+        com.checkIn(dir, "Joon", "take out trash");
+        com.checkIn(dir, "Tiffany", "wash the dishes");
+        com.checkIn(dir, "Cindy", "water plants");
         choreList = readObjectFromFile(chores, ArrayList.class);
         for (Chore chore : choreList) {
             if (chore.getName().equals("take out trash")) {
@@ -211,7 +211,7 @@ public class CommandTest {
             }
         }
 
-        com.checkIn(cb, "Cindy", "wash the dishes");
+        com.checkIn(dir, "Cindy", "wash the dishes");
         choreList = readObjectFromFile(chores, ArrayList.class);
         for (Chore chore : choreList) {
             if (chore.getName().equals("wash the dishes")) {
@@ -221,7 +221,54 @@ public class CommandTest {
     }
 
     @Test
-    public void moveAssignmentTest() {
+    public void moveAssignmentTest() throws IOException, ClassNotFoundException {
+        File dir = tempFolder.newFolder("folder");
+
+        Command com = new Command();
+        com.house(dir);
+        File cb = new File(dir, ".chore_bot");
+
+        File chores = new File(cb, "chores");
+        com.addChore(dir, "take out trash", 26);
+        com.addChore(dir, "wash the dishes", 365);
+        com.addChore(dir, "water plants", 52);
+
+        com.addPerson(dir, "Joon");
+        com.addPerson(dir, "Cindy");
+        com.addPerson(dir, "Tiffany");
+        com.addPerson(dir, "Aurora");
+
+        com.assign(dir, "Joon", "take out trash");
+        com.assign(dir, "Cindy", "take out trash");
+        com.assign(dir, "Cindy", "wash the dishes");
+        com.assign(dir, "Tiffany", "wash the dishes");
+        com.assign(dir, "Joon", "wash the dishes");
+        com.assign(dir, "Aurora", "wash the dishes");
+        com.assign(dir, "Cindy", "water plants");
+
+        com.moveAssignment(dir, "take out trash", "Cindy", 0);
+        com.moveAssignment(dir, "wash the dishes", "Tiffany", 3);
+        ArrayList<Chore> choreList = readObjectFromFile(chores, ArrayList.class);
+        for (Chore chore : choreList) {
+            if (chore.getName().equals("take out trash")) {
+                assertEquals("Cindy", chore.getCurrent().getName());
+            } else if (chore.getName().equals("wash the dishes")) {
+                assertEquals("Cindy", chore.getCurrent().getName());
+                assertEquals("Joon", chore.getPersons().get(1).getName());
+                assertEquals("Aurora", chore.getPersons().get(2).getName());
+                assertEquals("Tiffany", chore.getPersons().get(3).getName());
+            }
+        }
+
+        com.moveAssignment(dir, "wash the dishes", "Aurora", 1);
+        for (Chore chore : choreList) {
+            if (chore.getName().equals("wash the dishes")) {
+                assertEquals("Cindy", chore.getCurrent().getName());
+                assertEquals("Aurora", chore.getPersons().get(1).getName());
+                assertEquals("Joon", chore.getPersons().get(2).getName());
+                assertEquals("Tiffany", chore.getPersons().get(3).getName());
+            }
+        }
 
     }
 }
