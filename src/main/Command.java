@@ -90,7 +90,7 @@ public class Command {
      * @param person the name of the person to be assigned to the chore
      * @param chore the name of the chore that the person will be assigned to
      */
-    public void assign(String person, String chore) {
+    public void assign(File dir, String person, String chore) {
 
     }
 
@@ -98,7 +98,7 @@ public class Command {
      * Prints the order in which people are assigned to do a chore.
      * @param chore the name of the chore the chore to see the order assignment of
      */
-    public void viewAssignmentOrder(String chore) {
+    public void viewAssignmentOrder(File dir, String chore) {
 
     }
 
@@ -108,7 +108,7 @@ public class Command {
      * @param person the name of the person to move in assignment
      * @param place the location to move the person to
      */
-    public void moveAssignment(String chore, String person, int place) {
+    public void moveAssignment(File dir, String chore, String person, int place) {
 
     }
 
@@ -116,7 +116,7 @@ public class Command {
      * Prints all the chores of a person.
      * @param person the name of the person to see the chores of
      */
-    public void viewChores(String person) {
+    public void viewChores(File dir, String person) {
 
     }
 
@@ -125,7 +125,7 @@ public class Command {
      * @param person the name of the person who completed the chore
      * @param chore the name of the chore that was completed
      */
-    public void checkIn(String person, String chore) {
+    public void checkIn(File dir, String person, String chore) {
 
     }
 }
