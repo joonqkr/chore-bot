@@ -86,4 +86,79 @@ public class CommandTest {
         personList = readObjectFromFile(persons, ArrayList.class);
         assertEquals(0, personList.size());
     }
+
+    @Test
+    public void assignTest() throws IOException, ClassNotFoundException {
+        File dir = tempFolder.newFolder("folder");
+
+        Command com = new Command();
+        com.house(dir);
+        File cb = new File(dir, ".chore_bot");
+
+        File chores = new File(cb, "chores");
+        com.addChore(dir, "take out trash", 26);
+        com.addChore(dir, "wash the dishes", 365);
+        com.addChore(dir, "water plants", 52);
+
+        File persons = new File(cb, "persons");
+        com.addPerson(dir, "Joon");
+        com.addPerson(dir, "Cindy");
+        com.addPerson(dir, "Tiffany");
+
+        com.assign(cb, "Joon", "take out trash");
+        com.assign(cb, "Cindy", "take out trash");
+        ArrayList<Chore> choreList = readObjectFromFile(chores, ArrayList.class);
+        for (Chore chore : choreList) {
+            if (chore.getName().equals("take out trash")) {
+                assertEquals(2, chore.getPersons().size());
+                assertEquals("Joon", chore.getCurrent().getName());
+            }
+        }
+        ArrayList<Person> personList = readObjectFromFile(persons, ArrayList.class);
+        for (Person person : personList) {
+            if (person.getName().equals("Joon") || person.getName().equals("Cindy")) {
+                assertEquals(1, person.getChores().size());
+                assertEquals("take out trash", person.getChores().get(0).getName());
+            }
+        }
+
+        com.assign(cb, "Cindy", "wash the dishes");
+        com.assign(cb, "Joon", "wash the dishes");
+        com.assign(cb, "Tiffany", "wash the dishes");
+        choreList = readObjectFromFile(chores, ArrayList.class);
+        for (Chore chore : choreList) {
+            if (chore.getName().equals("wash the dishes")) {
+                assertEquals(3, chore.getPersons().size());
+                assertEquals("Cindy", chore.getCurrent().getName());
+            }
+        }
+        personList = readObjectFromFile(persons, ArrayList.class);
+        for (Person person : personList) {
+            if (person.getName().equals("Joon") || person.getName().equals("Cindy")) {
+                assertEquals(2, person.getChores().size());
+                assertEquals("take out trash", person.getChores().get(0).getName());
+                assertEquals("wash the dishes", person.getChores().get(1).getName());
+            }
+            if (person.getName().equals("Tiffany")) {
+                assertEquals(1, person.getChores().size());
+                assertEquals("wash the dishes", person.getChores().get(0).getName());
+            }
+        }
+
+        com.assign(cb, "Cindy", "water plants");
+        choreList = readObjectFromFile(chores, ArrayList.class);
+        for (Chore chore : choreList) {
+            if (chore.getName().equals("water plants")) {
+                assertEquals(1, chore.getPersons().size());
+                assertEquals("Cindy", chore.getCurrent().getName());
+            }
+        }
+        personList = readObjectFromFile(persons, ArrayList.class);
+        for (Person person : personList) {
+            if (person.getName().equals("Cindy")) {
+                assertEquals(3, person.getChores().size());
+                assertEquals("water plants", person.getChores().get(2).getName());
+            }
+        }
+    }
 }
