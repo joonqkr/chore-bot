@@ -45,12 +45,7 @@ public class Chore {
 
     /** Returns the current person assigned to the chore. */
     public Person getCurrent() {
-        return this._current;
-    }
-
-    /** Updates the name of chore. */
-    public void updateCurrent(Person next) {
-        this._current = next;
+        return _persons.get(0);
     }
 
     /** Returns the list of people assigned to the chore. */

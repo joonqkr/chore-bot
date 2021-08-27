@@ -42,11 +42,7 @@ public class ChoreTest {
         cleanBathroom.addPerson(joon);
         Person twong = new Person("Tiff");
         cleanBathroom.addPerson(twong);
-        cleanBathroom.updateCurrent(joon);
         assertEquals(2, cleanBathroom.getPersons().size());
-        assertEquals(joon.getName(), cleanBathroom.getCurrent().getName());
-        cleanBathroom.updateCurrent(twong);
-        assertEquals(twong.getName(), cleanBathroom.getCurrent().getName());
         cleanBathroom.removePerson(joon);
         assertEquals(1, cleanBathroom.getPersons().size());
     }
